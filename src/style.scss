@@ -1,0 +1,17 @@
+.app-wrapper {
+  // max-width: calc(768px + 16px * 2);
+  width:100%;
+  margin: 0 auto;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}

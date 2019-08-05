@@ -1,0 +1,27 @@
+.header {
+  width: 100%;
+  padding: 0 16px;
+
+  .nav-bar {
+    padding-top: 2em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .router-link {
+    display: inline-flex;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-touch-callout: none;
+    user-select: none;
+    cursor: pointer;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+
+    &:active {
+      background: #41ADDD;
+      color: #FFF;
+    }
+  }
+}

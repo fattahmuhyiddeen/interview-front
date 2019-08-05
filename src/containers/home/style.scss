@@ -1,0 +1,68 @@
+
+.home-page {
+  
+  h2 {
+    font-size: 1.5em;
+  }
+  
+  section {
+    margin: 3em auto;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &.centered {
+      text-align: center;
+    }
+  }
+
+  form {
+    margin-bottom: 1em;
+
+    input {
+      outline: none;
+      border-bottom: 1px dotted #999;
+    }
+  }
+
+  span.at-prefix {
+    color: black;
+    margin-left: 0.4em;
+  }
+
+  &-center-panel{
+    // background-color: #333f48;
+  }
+}
+
+.page-container{
+  height: 100vh;
+}
+
+.home-title{
+  font-size: 2em;
+  color: white;
+  background-color: orange;
+}
+
+.loading-cover{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  opacity: 0.8;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-label{
+    position: absolute;
+    color: red;
+    font-size: 0.8em;
+}
