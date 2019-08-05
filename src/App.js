@@ -19,13 +19,11 @@ import NotFoundPage from './containers/not_found';
 
 import Header from './components/header';
 
-import { getPublicData } from './redux/ducks/publicData';
 import './style.scss';
 
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
-    getPublicData();
     this.store = configureStore();
   }
 

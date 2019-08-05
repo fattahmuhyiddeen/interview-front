@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 
-import publicData from './publicData'
-import health from './health'
+import health from './health';
+import orders from './orders';
+import modalForm from './modalForm';
 
 export default combineReducers({
-    publicData,
-    health
+    health,
+    orders,
+    modalForm
 });

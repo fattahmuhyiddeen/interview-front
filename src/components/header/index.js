@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import './style.scss'
 import { checkOrder, checkPayment } from '../../redux/ducks/health'
+import AddNew from '../../components/addNew';
 
 const checkHealth = () => {
     checkOrder();
@@ -22,6 +23,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
                     <Link className="router-link" to="/" style={{ color: 'maroon' }}>
                         {'Order Management'}
                     </Link>
+                    <AddNew />
                     <div>
                         <div>{`Order Microservice Status :${orderStatus}`}</div>
                         <div>{`Payment Microservice Status :${paymentStatus}`}</div>
