@@ -9,25 +9,25 @@ export const GET_CHECK_PAYMENT = `${NAMESPACE}/GET_CHECK_PAYMENT`;
 export const GET_CHECK_PAYMENT_SUCCESS = `${NAMESPACE}/GET_CHECK_PAYMENT_SUCCESS`;
 export const GET_CHECK_PAYMENT_FAIL = `${NAMESPACE}/GET_CHECK_PAYMENT_FAIL`;
 
-// export const getPublicData = () => {
-//     getStore().dispatch({ type: GET_PUBLIC_DATA });
-//     fetch(`${config.apiDomain}api/airports`)
-//         .then(response => response.json())
-//         .then(response => getPublicDataSuccess(response))
-
-// }
-// export const getPublicDataSuccess = (data) => getStore().dispatch({ type: GET_PUBLIC_DATA_SUCCESS, data });
-// export const getPublicDataFail = () => getStore().dispatch({ type: GET_PUBLIC_DATA_FAIL });
-
 export const checkOrder = () => {
     getStore().dispatch({ type: GET_CHECK_ORDER });
     fetch(`${config.orderTimestamp}`)
         .then(response => checkOrderSuccess(response.status))
-        .catch((err) => console.log(err))//checkOrderFail());
+        .catch((err) => checkOrderFail());
 
 }
 export const checkOrderSuccess = (data) => getStore().dispatch({ type: GET_CHECK_ORDER_SUCCESS, data });
 export const checkOrderFail = () => getStore().dispatch({ type: GET_CHECK_PAYMENT_FAIL });
+
+export const checkPayment = () => {
+    getStore().dispatch({ type: GET_CHECK_PAYMENT });
+    fetch(`${config.paymentTimestamp}`)
+        .then(response => checkPaymentSuccess(response.status))
+        .catch((err) => checkPaymentFail());
+
+}
+export const checkPaymentSuccess = (data) => getStore().dispatch({ type: GET_CHECK_PAYMENT_SUCCESS, data });
+export const checkPaymentFail = () => getStore().dispatch({ type: GET_CHECK_PAYMENT_FAIL });
 
 const initialState = {
     orderStatus: 'checking',
@@ -36,14 +36,18 @@ const initialState = {
 
 function healthReducer(state = initialState, action) {
     switch (action.type) {
-        case GET_CHECK_PAYMENT_FAIL:
+        case GET_CHECK_ORDER_FAIL:
         case GET_CHECK_ORDER:
             return { ...state, orderStatus: 'checking' };
         case GET_CHECK_ORDER_SUCCESS:
-            const orderStatus = action.data === 200 ? 'OK' : 'fail';
+            const orderStatus = action.data === 200 ? 'OK' : 'DEAD';
             return { ...state, orderStatus }
-        // case GET_ROUTES:
-        //     return { ...state, getRouteLoading: true };
+        case GET_CHECK_PAYMENT_FAIL:
+        case GET_CHECK_PAYMENT:
+            return { ...state, paymentStatus: 'checking' };
+        case GET_CHECK_PAYMENT_SUCCESS:
+            const paymentStatus = action.data === 200 ? 'OK' : 'DEAD';
+            return { ...state, paymentStatus }
         default:
             return state;
     }

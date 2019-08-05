@@ -18,7 +18,6 @@ import HomePage from './containers/home';
 import NotFoundPage from './containers/not_found';
 
 import Header from './components/header';
-// import Footer from './components/Footer';
 
 import { getPublicData } from './redux/ducks/publicData';
 import './style.scss';
@@ -46,7 +45,6 @@ class App extends React.PureComponent {
               <Route exact path="/" component={HomePage} />
               <Route path="" component={NotFoundPage} />
             </Switch>
-            {/* <Footer /> */}
           </BrowserRouter>
         </div>
       </Provider>
