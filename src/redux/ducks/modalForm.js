@@ -36,7 +36,7 @@ export const submitFail = () => getStore().dispatch({ type: SEND_FORM_FAIL });
 
 const initialState = {
     isVisible: false,
-    isLoading: false,
+    isSending: false,
     [ITEM_NAME_INPUT]: '',
     [PRICE_INPUT]: ''
 }
@@ -49,13 +49,13 @@ function reducer(state = initialState, action) {
         case SET_INPUT:
             return { ...state, [action.input]: action.value };
         case SEND_FORM:
-            return { ...state, isLoading: true };
+            return { ...state, isSending: true };
         case SEND_FORM_SUCCESS:
             return {
-                ...state, isLoading: false, isVisible: false, [ITEM_NAME_INPUT]: '', [PRICE_INPUT]: ''
+                ...state, isSending: false, isVisible: false, [ITEM_NAME_INPUT]: '', [PRICE_INPUT]: ''
             }
         case SEND_FORM_FAIL:
-            return { ...state, isLoading: false, isVisible: false }
+            return { ...state, isSending: false, isVisible: false }
         default:
             return state;
     }

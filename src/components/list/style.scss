@@ -1,0 +1,25 @@
+.container{
+    overflow: auto;
+    height: 70vh;
+    width: 100%;
+}
+
+.cell{
+    padding: 1em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: space-between;
+
+    &-odd{
+        background-color: #00000022; 
+    }
+
+    &-cancelled{
+        color: red;
+    }
+
+    &-pending{
+        color: orange;
+    }
+}

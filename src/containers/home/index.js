@@ -1,16 +1,9 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
-
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from "react-redux";
 import config from '../../config';
 import './style.scss';
 import List from '../../components/list';
-// import ModalFrom from '../../components/modalForm';
 import ModalForm from '../../components/modalForm';
 
 const bgStyle = {
@@ -32,8 +25,8 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
                 </Helmet>
 
 
-                <div className="w-100 d-flex flex-column align-items-center">
-                    <div className="col-md-10 col-sm-12">
+                <div className="w-100 d-flex flex-column align-items-center pt-5">
+                    <div className="col-md-10 col-sm-12 pt-5">
                         <div className="p-3 bg-light">
                             <div className="row py-2 home-page-center-panel">
                                 <List />

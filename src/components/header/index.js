@@ -23,7 +23,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
                     <Link className="router-link" to="/" style={{ color: 'maroon' }}>
                         {'Order Management'}
                     </Link>
-                    <AddNew />
+                    <AddNew className="addnew" />
                     <div>
                         <div>{`Order Microservice Status :${orderStatus}`}</div>
                         <div>{`Payment Microservice Status :${paymentStatus}`}</div>

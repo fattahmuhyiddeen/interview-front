@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-// import './style.scss'
+import './style.scss'
 import ReactList from 'react-list';
 import { getOrders } from '../../redux/ducks/orders'
 
@@ -12,12 +12,32 @@ class List extends React.Component { // eslint-disable-line react/prefer-statele
 
     renderItem = (index, key) => {
         const data = this.props.orders[index];
-        return <div key={key}>{data.item_name}</div>;
+        const isCancelled = data.state === 'cancelled';
+        return (
+            <div className={`cell ${index % 2 && 'cell-odd'}`} key={key}>
+                <div>
+                    {index + 1}
+                </div>
+                <div>
+                    {data.item_name}
+                </div>
+                <div>
+                    RM {(data.price / 100).toFixed(2)}
+                </div>
+                <div className={`cell-${data.state}`}>
+                    {data.state}
+                </div>
+                <div>
+                    <button>View</button>
+                    {!isCancelled && <button>Cancel</button>}
+                </div>
+            </div>
+        );
     }
 
     render() {
         return (
-            <div style={{ overflow: 'auto', height: 500 }}>
+            <div className='container'>
                 <ReactList
                     itemRenderer={this.renderItem}
                     length={this.props.orders.length}
