@@ -1,4 +1,6 @@
 export default {
-    apiDomain: 'https://posavi.azurewebsites.net/',
-    dateFormat: 'dd MMM yyyy'
+    apiDomain: '',
+    dateFormat: 'dd MMM yyyy',
+    orderTimestamp: 'https://interview-order.herokuapp.com/timestamp',
+    paymentTimestamp: 'https://interview-payment.herokuapp.com/timestamp',
 }
