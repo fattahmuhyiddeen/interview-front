@@ -1,10 +1,27 @@
 import React from 'react';
 import { connect } from "react-redux";
 import './modal.scss';
-import { toggleModal, ITEM_NAME_INPUT, PRICE_INPUT, setInput, submit } from '../../redux/ducks/modalForm'
+import {
+    toggleModal,
+    ITEM_NAME_INPUT,
+    PRICE_INPUT,
+    setInput,
+    submit,
+} from '../../redux/ducks/modalForm'
 
 const Modal = ({ modalForm }) => {
-    const { isVisible, [ITEM_NAME_INPUT]: item_name_input, [PRICE_INPUT]: price_input, isLoading, isSending } = modalForm;
+    const {
+        isVisible,
+        [ITEM_NAME_INPUT]: item_name_input,
+        [PRICE_INPUT]: price_input,
+        isSending,
+        isReadOnly
+    } = modalForm;
+
+    let title = isSending ? 'Sending ...' : 'New Order';
+    if (isReadOnly) {
+        title = 'View Item';
+    }
     return (
         <div>
             <div className="modal-wrapper"
@@ -13,7 +30,7 @@ const Modal = ({ modalForm }) => {
                     opacity: isVisible ? '1' : '0'
                 }}>
                 <div className="modal-header">
-                    <b>{isSending && 'Submitting '}New Order</b>
+                    <b>{title}</b>
                     <span className="close-modal-btn" onClick={() => toggleModal()}>×</span>
                 </div>
                 <div className="modal-body">
@@ -23,7 +40,12 @@ const Modal = ({ modalForm }) => {
                                 Item Name
                             </td>
                             <td>
-                                <input value={item_name_input} onChangeCapture={(event) => setInput(ITEM_NAME_INPUT, event.target.value)} />
+                                <input
+                                    readOnly={isReadOnly}
+                                    placeholder='Book, Ice Cream, etc'
+                                    value={item_name_input}
+                                    onChangeCapture={(event) => setInput(ITEM_NAME_INPUT, event.target.value)}
+                                />
                             </td>
                         </tr>
                         <tr>
@@ -31,12 +53,18 @@ const Modal = ({ modalForm }) => {
                                 Item Price (RM)
                             </td>
                             <td>
-                                <input type='number' value={price_input} onChangeCapture={(event) => setInput(PRICE_INPUT, event.target.value)} />
+                                <input
+                                    readOnly={isReadOnly}
+                                    type='number'
+                                    placeholder='10.50 etc'
+                                    value={price_input}
+                                    onChangeCapture={(event) => setInput(PRICE_INPUT, event.target.value)}
+                                />
                             </td>
                         </tr>
                     </table>
                 </div>
-                {!isSending && <div className="modal-footer">
+                {!isSending && !isReadOnly && <div className="modal-footer">
                     <button className="btn-continue" onClick={() => submit()}>Submit</button>
                 </div>}
             </div>

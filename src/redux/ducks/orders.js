@@ -11,6 +11,7 @@ export const getOrders = () => {
     fetch(`${config.apiDomain}${config.api.list_orders}`)
         .then(response => {
             response.json().then(function (data) {
+                data.reverse();
                 checkOrdersSuccess(data)
             });
         })

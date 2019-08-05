@@ -5,6 +5,7 @@ export default {
     paymentTimestamp: 'https://interview-payment.herokuapp.com/timestamp',
     api: {
         list_orders: 'list_orders',
-        create_order: 'create_order'
+        create_order: 'create_order',
+        cancel_order: 'cancel_order',
     }
 }

@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import './style.scss'
 import ReactList from 'react-list';
 import { getOrders } from '../../redux/ducks/orders'
+import { viewData } from '../../redux/ducks/modalForm'
+import { cancelOrder } from '../../redux/ducks/order';
+
 
 class List extends React.Component { // eslint-disable-line react/prefer-stateless-function
     componentDidMount() {
@@ -11,7 +14,8 @@ class List extends React.Component { // eslint-disable-line react/prefer-statele
     }
 
     renderItem = (index, key) => {
-        const data = this.props.orders[index];
+        const { isCancelling, orders } = this.props;
+        const data = orders[index];
         const isCancelled = data.state === 'cancelled';
         return (
             <div className={`cell ${index % 2 && 'cell-odd'}`} key={key}>
@@ -28,8 +32,9 @@ class List extends React.Component { // eslint-disable-line react/prefer-statele
                     {data.state}
                 </div>
                 <div>
-                    <button>View</button>
-                    {!isCancelled && <button>Cancel</button>}
+                    <button onClick={() => viewData(data)}>View</button>
+                    {!isCancelled && !isCancelling && <button onClick={() => cancelOrder(data.id)}>Cancel</button>}
+                    {isCancelling && '.....'}
                 </div>
             </div>
         );
@@ -50,4 +55,5 @@ class List extends React.Component { // eslint-disable-line react/prefer-statele
 
 export default connect(state => ({
     orders: state.orders.data,
+    isCancelling: state.order.isCancelling,
 }))(List);

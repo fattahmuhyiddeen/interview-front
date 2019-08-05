@@ -11,6 +11,9 @@ export const SEND_FORM = `${NAMESPACE}/SEND_FORM`;
 export const SEND_FORM_SUCCESS = `${NAMESPACE}/SEND_FORM_SUCCESS`;
 export const SEND_FORM_FAIL = `${NAMESPACE}/SEND_FORM_FAIL`;
 
+export const VIEW_DATA = `${NAMESPACE}/VIEW_DATA`;
+
+export const viewData = (data) => getStore().dispatch({ type: VIEW_DATA, data });
 
 export const toggleModal = () => getStore().dispatch({ type: TOGGLE_FORM });
 
@@ -37,25 +40,30 @@ export const submitFail = () => getStore().dispatch({ type: SEND_FORM_FAIL });
 const initialState = {
     isVisible: false,
     isSending: false,
+    isReadOnly: false,
     [ITEM_NAME_INPUT]: '',
     [PRICE_INPUT]: ''
 }
 
 function reducer(state = initialState, action) {
+    const clearInput = { [ITEM_NAME_INPUT]: '', [PRICE_INPUT]: '' }
     switch (action.type) {
         case TOGGLE_FORM:
             const { isVisible } = state;
-            return { ...state, isVisible: !isVisible };
+            return { ...state, isVisible: !isVisible, isReadOnly: false, ...clearInput };
         case SET_INPUT:
             return { ...state, [action.input]: action.value };
         case SEND_FORM:
             return { ...state, isSending: true };
         case SEND_FORM_SUCCESS:
             return {
-                ...state, isSending: false, isVisible: false, [ITEM_NAME_INPUT]: '', [PRICE_INPUT]: ''
+                ...state, isSending: false, isVisible: false, ...clearInput
             }
         case SEND_FORM_FAIL:
             return { ...state, isSending: false, isVisible: false }
+        case VIEW_DATA:
+            const { data } = action;
+            return { ...state, isVisible: true, [ITEM_NAME_INPUT]: data.item_name, [PRICE_INPUT]: data.price, isReadOnly: true };
         default:
             return state;
     }
