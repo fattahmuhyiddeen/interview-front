@@ -5,7 +5,6 @@ export const CANCEL_ORDERS = `${NAMESPACE}/CANCEL_ORDERS`;
 export const CANCEL_ORDERS_SUCCESS = `${NAMESPACE}/CANCEL_ORDERS_SUCCESS`;
 export const CANCEL_ORDERS_FAIL = `${NAMESPACE}/CANCEL_ORDERS_FAIL`;
 
-
 export const cancelOrder = (id) => {
     getStore().dispatch({ type: CANCEL_ORDERS });
     fetch(`${config.apiDomain}${config.api.cancel_order}`,
@@ -19,7 +18,6 @@ export const cancelOrder = (id) => {
         })
         .then(cancelOrderSuccess)
         .catch(cancelOrderFail);
-
 }
 export const cancelOrderSuccess = () => getStore().dispatch({ type: CANCEL_ORDERS_SUCCESS });
 export const cancelOrderFail = () => getStore().dispatch({ type: CANCEL_ORDERS_FAIL });

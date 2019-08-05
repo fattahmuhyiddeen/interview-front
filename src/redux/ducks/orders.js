@@ -5,14 +5,15 @@ export const GET_ORDERS = `${NAMESPACE}/GET_ORDERS`;
 export const GET_ORDERS_SUCCESS = `${NAMESPACE}/GET_ORDERS_SUCCESS`;
 export const GET_ORDERS_FAIL = `${NAMESPACE}/GET_ORDERS_FAIL`;
 
-
 export const getOrders = () => {
     getStore().dispatch({ type: GET_ORDERS });
     fetch(`${config.apiDomain}${config.api.list_orders}`)
         .then(response => {
             response.json().then(function (data) {
-                data.reverse();
-                checkOrdersSuccess(data)
+                if (data) {
+                    data.reverse();
+                    checkOrdersSuccess(data)
+                }
             });
         })
         .catch((_) => checkOrdersFail());
@@ -20,7 +21,6 @@ export const getOrders = () => {
 }
 export const checkOrdersSuccess = (data) => getStore().dispatch({ type: GET_ORDERS_SUCCESS, data });
 export const checkOrdersFail = () => getStore().dispatch({ type: GET_ORDERS_FAIL });
-
 
 const initialState = {
     data: [],

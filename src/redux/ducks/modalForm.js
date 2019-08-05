@@ -1,5 +1,6 @@
 import getStore from '../';
 import config from '../../config';
+import { getOrders } from './orders';
 export const NAMESPACE = 'modalForm';
 export const TOGGLE_FORM = `${NAMESPACE}/TOGGLE_FORM`;
 export const SET_INPUT = `${NAMESPACE}/SET_INPUT`;
@@ -30,11 +31,14 @@ export const submit = () => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ item_name, price })
+        body: JSON.stringify({ item_name, price, user_id: 1 })
     }).then(submitSuccess).catch(submitFail);
 }
 
-export const submitSuccess = () => getStore().dispatch({ type: SEND_FORM_SUCCESS });
+export const submitSuccess = () => {
+    getOrders();
+    getStore().dispatch({ type: SEND_FORM_SUCCESS });
+}
 export const submitFail = () => getStore().dispatch({ type: SEND_FORM_FAIL });
 
 const initialState = {

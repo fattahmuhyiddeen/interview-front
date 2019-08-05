@@ -17,6 +17,7 @@ class List extends React.Component { // eslint-disable-line react/prefer-statele
         const { isCancelling, orders } = this.props;
         const data = orders[index];
         const isCancelled = data.state === 'cancelled';
+        const isDelivered = data.state === 'delivered';
         return (
             <div className={`cell ${index % 2 && 'cell-odd'}`} key={key}>
                 <div>
@@ -33,7 +34,7 @@ class List extends React.Component { // eslint-disable-line react/prefer-statele
                 </div>
                 <div>
                     <button onClick={() => viewData(data)}>View</button>
-                    {!isCancelled && !isCancelling && <button onClick={() => cancelOrder(data.id)}>Cancel</button>}
+                    {!(isCancelled || isCancelling || isDelivered) && <button onClick={() => cancelOrder(data.id)}>Cancel</button>}
                     {isCancelling && '.....'}
                 </div>
             </div>

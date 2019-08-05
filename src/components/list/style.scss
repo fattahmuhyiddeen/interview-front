@@ -19,7 +19,15 @@
         color: red;
     }
 
-    &-pending{
+    &-declined{
+        color: red;
+    }
+
+    &-confirmed{
         color: orange;
+    }
+
+    &-delivered{
+        color: green;
     }
 }
