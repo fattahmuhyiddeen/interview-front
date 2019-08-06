@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import './modal.scss';
 import {
     toggleModal,
@@ -7,7 +7,7 @@ import {
     PRICE_INPUT,
     setInput,
     submit,
-} from '../../redux/ducks/modalForm'
+} from '../../redux/ducks/modalForm';
 
 const Modal = ({ modalForm }) => {
     const {
