@@ -5,10 +5,6 @@
 }
 .cell{
     width: 20%;
-    
-    &-odd{
-        background-color: #00000022; 
-    }
 
     &-cancelled{
         color: red;
@@ -32,4 +28,8 @@
     display: flex;
     justify-content: space-between;
     align-items: space-between;
+
+    &-odd{
+        background-color: #00000022; 
+    }
 }

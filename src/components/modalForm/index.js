@@ -15,7 +15,8 @@ const Modal = ({ modalForm }) => {
         [ITEM_NAME_INPUT]: item_name_input,
         [PRICE_INPUT]: price_input,
         isSending,
-        isReadOnly
+        isReadOnly,
+        readOnlyData
     } = modalForm;
 
     let title = isSending ? 'Sending ...' : 'New Order';
@@ -62,6 +63,16 @@ const Modal = ({ modalForm }) => {
                                 />
                             </td>
                         </tr>
+                        {isReadOnly && (
+                            <tr>
+                                <td>
+                                    Order Time
+                                </td>
+                                <td>
+                                    {readOnlyData.created_at}
+                                </td>
+                            </tr>
+                        )}
                     </table>
                 </div>
                 {!isSending && !isReadOnly && <div className="modal-footer">

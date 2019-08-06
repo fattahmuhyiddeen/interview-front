@@ -16,6 +16,8 @@ class List extends React.Component { // eslint-disable-line react/prefer-statele
         const { isCancelling } = this.props;
         const isCancelled = data.state === 'cancelled';
         const isDelivered = data.state === 'delivered';
+        const isDeclined = data.state === 'declined';
+        const canCancel = !(isCancelled || isCancelling || isDelivered || isDeclined);
         return (
             <tr className={`row ${index % 2 && 'row-odd'}`} key={index}>
                 <td className="cell">
@@ -32,7 +34,7 @@ class List extends React.Component { // eslint-disable-line react/prefer-statele
                 </td>
                 <td className="cell">
                     <button onClick={() => viewData(data)}>View</button>
-                    {!(isCancelled || isCancelling || isDelivered) && <button onClick={() => cancelOrder(data.id)}>Cancel</button>}
+                    {canCancel && <button onClick={() => cancelOrder(data.id)}>Cancel</button>}
                     {isCancelling && '.....'}
                 </td>
             </tr>);

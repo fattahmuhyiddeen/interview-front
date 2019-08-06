@@ -45,6 +45,7 @@ const initialState = {
     isVisible: false,
     isSending: false,
     isReadOnly: false,
+    readOnlyData: {},
     [ITEM_NAME_INPUT]: '',
     [PRICE_INPUT]: ''
 }
@@ -67,7 +68,14 @@ function reducer(state = initialState, action) {
             return { ...state, isSending: false, isVisible: false }
         case VIEW_DATA:
             const { data } = action;
-            return { ...state, isVisible: true, [ITEM_NAME_INPUT]: data.item_name, [PRICE_INPUT]: data.price, isReadOnly: true };
+            return { 
+                ...state, 
+                isVisible: true, 
+                [ITEM_NAME_INPUT]: data.item_name, 
+                [PRICE_INPUT]: data.price, 
+                isReadOnly: true,
+                readOnlyData: data
+             };
         default:
             return state;
     }
