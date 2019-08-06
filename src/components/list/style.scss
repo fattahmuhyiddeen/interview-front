@@ -3,14 +3,9 @@
     height: 70vh;
     width: 100%;
 }
-
 .cell{
-    padding: 1em;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: space-between;
-
+    width: 20%;
+    
     &-odd{
         background-color: #00000022; 
     }
@@ -30,4 +25,11 @@
     &-delivered{
         color: green;
     }
+}
+
+.row{
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: space-between;
 }
